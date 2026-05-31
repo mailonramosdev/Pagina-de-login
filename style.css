@@ -1,0 +1,729 @@
+/* =========================================
+   VARIÁVEIS DE TEMA
+   ========================================= */
+:root {
+  --bg: #f0f4ff;
+  --surface: #ffffff;
+  --surface-alt: #f8faff;
+  --border: #e2e8f8;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-light: #ede9fe;
+  --text-main: #1e1b4b;
+  --text-muted: #6b7280;
+  --text-placeholder: #a5b4cc;
+  --error: #dc2626;
+  --error-bg: #fef2f2;
+  --success: #16a34a;
+  --shadow-sm: 0 1px 3px rgba(79, 70, 229, 0.08);
+  --shadow-md: 0 8px 30px rgba(79, 70, 229, 0.12);
+  --shadow-lg: 0 20px 60px rgba(79, 70, 229, 0.18);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #0f0e1a;
+  --surface: #1a1929;
+  --surface-alt: #22213a;
+  --border: #2e2d50;
+  --primary: #7c6ff7;
+  --primary-hover: #6c5ff0;
+  --primary-light: #2a2550;
+  --text-main: #e8e6ff;
+  --text-muted: #9896b8;
+  --text-placeholder: #4d4b72;
+  --error: #f87171;
+  --error-bg: #2a1a1a;
+  --success: #4ade80;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   RESET E BASE
+   ========================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+/* =========================================
+   FORMAS DECORATIVAS DE FUNDO
+   ========================================= */
+.bg-shapes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+}
+
+[data-theme="dark"] .shape {
+  opacity: 0.2;
+}
+
+.shape-1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, #7c6ff7, #4f46e5);
+  top: -120px;
+  left: -120px;
+  animation: float 8s ease-in-out infinite;
+}
+
+.shape-2 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, #a78bfa, #6d28d9);
+  bottom: -80px;
+  right: -80px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+.shape-3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #60a5fa, #3b82f6);
+  top: 50%;
+  right: 15%;
+  animation: float 12s ease-in-out infinite 2s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-24px) scale(1.04);
+  }
+}
+
+/* =========================================
+   BOTÃO DE TEMA
+   ========================================= */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.theme-toggle:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: rotate(20deg) scale(1.08);
+  box-shadow: var(--shadow-md);
+}
+
+/* =========================================
+   WRAPPER E CARD DE LOGIN
+   ========================================= */
+.login-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 24px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card,
+.dashboard-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 44px 40px;
+  width: 100%;
+  max-width: 440px;
+  animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   CABEÇALHO DO CARD
+   ========================================= */
+.card-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.logo {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--primary), #7c6ff7);
+  color: #fff;
+  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+}
+
+.card-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.card-header p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* =========================================
+   GRUPOS DE FORMULÁRIO
+   ========================================= */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-placeholder);
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: color var(--transition);
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 42px 12px 40px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-alt);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition),
+    background var(--transition);
+}
+
+.input-wrapper input::placeholder {
+  color: var(--text-placeholder);
+}
+
+.input-wrapper input:focus {
+  border-color: var(--primary);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.input-wrapper input:focus + .input-icon,
+.input-wrapper:focus-within .input-icon {
+  color: var(--primary);
+}
+
+/* Estado de erro no input */
+.form-group.has-error .input-wrapper input {
+  border-color: var(--error);
+  background: var(--error-bg);
+}
+
+.form-group.has-error .input-wrapper input:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+/* Estado de sucesso no input */
+.form-group.is-valid .input-wrapper input {
+  border-color: var(--success);
+}
+
+/* Botão mostrar/esconder senha */
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--text-placeholder);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: color var(--transition);
+}
+
+.toggle-password:hover {
+  color: var(--primary);
+}
+
+/* Mensagem de erro por campo */
+.field-error {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--error);
+  margin-top: 6px;
+  min-height: 18px;
+  transition: opacity var(--transition);
+}
+
+/* =========================================
+   INDICADOR DE FORÇA DA SENHA
+   ========================================= */
+.strength-meter {
+  margin-top: 10px;
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+.strength-meter.visible {
+  display: flex;
+}
+
+.strength-bar {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.strength-segment {
+  height: 4px;
+  flex: 1;
+  border-radius: 99px;
+  background: var(--border);
+  transition: background var(--transition);
+}
+
+.strength-segment.weak {
+  background: #ef4444;
+}
+.strength-segment.fair {
+  background: #f59e0b;
+}
+.strength-segment.good {
+  background: #3b82f6;
+}
+.strength-segment.strong {
+  background: #16a34a;
+}
+
+.strength-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 48px;
+  text-align: right;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+/* =========================================
+   OPÇÕES DO FORMULÁRIO
+   ========================================= */
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Checkbox customizado */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface-alt);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.checkbox-label input:checked ~ .checkmark {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.checkbox-label input:checked ~ .checkmark::after {
+  content: "";
+  width: 5px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg) translateY(-1px);
+  display: block;
+}
+
+.forgot-link {
+  font-size: 0.85rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity var(--transition);
+}
+
+.forgot-link:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+/* =========================================
+   FEEDBACK GERAL DO FORMULÁRIO
+   ========================================= */
+.form-feedback {
+  font-size: 0.85rem;
+  padding: 0;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all var(--transition);
+  opacity: 0;
+}
+
+.form-feedback.show {
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  max-height: 80px;
+  opacity: 1;
+}
+
+.form-feedback.error {
+  background: var(--error-bg);
+  color: var(--error);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.form-feedback.success {
+  background: #f0fdf4;
+  color: var(--success);
+  border: 1px solid rgba(22, 163, 74, 0.2);
+}
+
+[data-theme="dark"] .form-feedback.success {
+  background: #0d2a1a;
+}
+
+/* =========================================
+   BOTÃO DE SUBMIT
+   ========================================= */
+.btn-submit {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--primary), #7c6ff7);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-submit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0);
+  transition: background var(--transition);
+}
+
+.btn-submit:hover:not(:disabled)::before {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(79, 70, 229, 0.4);
+}
+
+.btn-submit:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+}
+
+.btn-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn-spinner {
+  display: none;
+}
+
+.btn-submit.loading .btn-text {
+  display: none;
+}
+
+.btn-submit.loading .btn-spinner {
+  display: inline;
+}
+
+/* =========================================
+   RODAPÉ DO CARD
+   ========================================= */
+.card-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.card-footer a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
+.card-footer a:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+/* =========================================
+   DASHBOARD
+   ========================================= */
+.dashboard-card {
+  text-align: center;
+}
+
+/* Avatar com inicial do e-mail */
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #7c6ff7);
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+  letter-spacing: -0.02em;
+}
+
+.wave {
+  display: inline-block;
+  animation: wave 1.8s ease-in-out infinite;
+  transform-origin: 70% 70%;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(14deg);
+  }
+  30% {
+    transform: rotate(-8deg);
+  }
+  45% {
+    transform: rotate(14deg);
+  }
+  60% {
+    transform: rotate(-4deg);
+  }
+}
+
+.user-email-display {
+  font-size: 0.875rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Grade de estatísticas */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.stat-card {
+  background: var(--surface-alt);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 18px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition);
+}
+
+.stat-card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Info de sessão */
+.session-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.session-icon {
+  color: var(--success);
+  font-size: 0.9rem;
+}
+
+/* Botão logout */
+.btn-logout {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-alt);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-logout:hover {
+  border-color: var(--error);
+  color: var(--error);
+  background: var(--error-bg);
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 480px) {
+  .login-card,
+  .dashboard-card {
+    padding: 32px 24px;
+  }
+
+  .card-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .stats-grid {
+    gap: 8px;
+  }
+
+  .stat-card {
+    padding: 14px 8px;
+  }
+
+  .stat-value {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — Portfólio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Botão de alternar tema -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+      <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+
+    <!-- Partículas de fundo decorativas -->
+    <div class="bg-shapes" aria-hidden="true">
+      <span class="shape shape-1"></span>
+      <span class="shape shape-2"></span>
+      <span class="shape shape-3"></span>
+    </div>
+
+    <main class="login-wrapper">
+      <div class="dashboard-card">
+        <!-- Avatar e saudação -->
+        <div class="card-header">
+          <div class="avatar" id="avatarInitial"></div>
+          <h1>Olá, seja bem-vindo! <span class="wave">👋</span></h1>
+          <p id="userEmailDisplay" class="user-email-display"></p>
+        </div>
+
+        <!-- Estatísticas ilustrativas -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <i class="fa-solid fa-folder-open stat-icon"></i>
+            <span class="stat-value">12</span>
+            <span class="stat-label">Projetos</span>
+          </div>
+          <div class="stat-card">
+            <i class="fa-solid fa-star stat-icon"></i>
+            <span class="stat-value">48</span>
+            <span class="stat-label">Estrelas</span>
+          </div>
+          <div class="stat-card">
+            <i class="fa-solid fa-code-commit stat-icon"></i>
+            <span class="stat-value">237</span>
+            <span class="stat-label">Commits</span>
+          </div>
+        </div>
+
+        <!-- Info da sessão -->
+        <div class="session-info">
+          <i class="fa-solid fa-circle-check session-icon"></i>
+          <span id="sessionTime"></span>
+        </div>
+
+        <!-- Botão logout -->
+        <button class="btn-logout" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Sair da conta
+        </button>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

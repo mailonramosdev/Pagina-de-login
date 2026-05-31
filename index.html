@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — Portfólio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Botão de alternar tema -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+      <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+
+    <!-- Partículas de fundo decorativas -->
+    <div class="bg-shapes" aria-hidden="true">
+      <span class="shape shape-1"></span>
+      <span class="shape shape-2"></span>
+      <span class="shape shape-3"></span>
+    </div>
+
+    <main class="login-wrapper">
+      <div class="login-card">
+        <!-- Cabeçalho do card -->
+        <div class="card-header">
+          <div class="logo">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h1>Bem-vindo de volta</h1>
+          <p>Acesse sua conta para continuar</p>
+        </div>
+
+        <!-- Formulário de login -->
+        <form id="loginForm" novalidate>
+          <!-- Campo e-mail -->
+          <div class="form-group" id="emailGroup">
+            <label for="email">E-mail</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-envelope input-icon"></i>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="seu@email.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <span class="field-error" id="emailError" role="alert"></span>
+          </div>
+
+          <!-- Campo senha -->
+          <div class="form-group" id="passwordGroup">
+            <label for="password">Senha</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+                required
+              />
+              <button
+                type="button"
+                class="toggle-password"
+                id="togglePassword"
+                aria-label="Mostrar ou esconder senha"
+              >
+                <i class="fa-regular fa-eye" id="eyeIcon"></i>
+              </button>
+            </div>
+            <span class="field-error" id="passwordError" role="alert"></span>
+
+            <!-- Indicador de força -->
+            <div class="strength-meter" id="strengthMeter" aria-live="polite">
+              <div class="strength-bar">
+                <span class="strength-segment" id="seg1"></span>
+                <span class="strength-segment" id="seg2"></span>
+                <span class="strength-segment" id="seg3"></span>
+                <span class="strength-segment" id="seg4"></span>
+              </div>
+              <span class="strength-label" id="strengthLabel"></span>
+            </div>
+          </div>
+
+          <!-- Lembrar-me e esqueceu senha -->
+          <div class="form-options">
+            <label class="checkbox-label">
+              <input type="checkbox" id="rememberMe" />
+              <span class="checkmark"></span>
+              Lembrar-me
+            </label>
+            <a href="#" class="forgot-link">Esqueceu a senha?</a>
+          </div>
+
+          <!-- Feedback de erro geral -->
+          <div class="form-feedback" id="formFeedback" role="alert"></div>
+
+          <!-- Botão de submit -->
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span class="btn-text">Entrar</span>
+            <span class="btn-spinner" id="btnSpinner" aria-hidden="true">
+              <i class="fa-solid fa-circle-notch fa-spin"></i>
+            </span>
+          </button>
+        </form>
+
+        <!-- Rodapé do card -->
+        <p class="card-footer">
+          Não tem uma conta?
+          <a href="#">Cadastre-se</a>
+        </p>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
