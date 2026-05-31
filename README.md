@@ -55,4 +55,4 @@ git clone https://github.com/seu-usuario/login-page.git
 
 ---
 
-Desenvolvido por [Mailon Eduardo Ramos](https://github.com/seu-usuario)
+Desenvolvido por [Mailon Eduardo Ramos](https://github.com/mailonramosdev)
